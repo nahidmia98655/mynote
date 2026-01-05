@@ -6,14 +6,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.example.mynote.model.Note
 import com.example.mynote.viewmodel.NoteViewModel
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,7 +28,7 @@ fun NoteScreen(viewModel: NoteViewModel) {
         },
         floatingActionButton = {
             FloatingActionButton(onClick = { viewModel.addNote() }) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add Note")
+                Icon(imageVector = Icons.Filled.Add, contentDescription = "Add Note")
             }
         }
     ) { innerPadding ->
@@ -89,7 +90,7 @@ fun NoteItem(note: Note, onDelete: (String) -> Unit) {
                 Text(text = note.content, style = MaterialTheme.typography.bodySmall, maxLines = 2)
             }
             IconButton(onClick = { onDelete(note.id) }) {
-                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete")
+                Icon(imageVector = Icons.Filled.Delete, contentDescription = "Delete")
             }
         }
     }
