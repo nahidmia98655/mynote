@@ -1,76 +1,80 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.hilt)
-}
+# Version Catalog for the Mynote project
+# ------------------------------------------------------------
+# This file follows TOML syntax (https://toml.io).
+# It defines versions, plugins, and library aliases used in the
+# Gradle build scripts.
 
-android {
-    namespace = "com.example.mynote"
-    compileSdk = 36
+[versions]
+# Android Gradle Plugin & Kotlin
+androidGradlePlugin = "8.4.0"
+kotlin = "1.9.0"
 
-    defaultConfig {
-        applicationId = "com.example.mynote"
-        minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+# Dagger Hilt
+hilt = "2.48"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+# AndroidX / Jetpack libraries
+navigation = "2.7.5"
+room = "2.5.2"
+androidxCore = "1.12.0"
+androidxLifecycle = "2.6.2"
+androidxActivity = "1.7.2"
+composeBom = "2024.06.00"
+composeMaterial3 = "1.2.1"
+composeIconsExtended = "1.5.3"
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-        freeCompilerArgs += listOf(
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-            "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi"
-        )
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
-    }
-}
+# Testing
+junit = "4.13.2"
+androidxJUnit = "1.1.5"
+espressoCore = "3.5.1"
+composeUiTestJunit4 = "1.5.3"
 
-dependencies {
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    implementation(libs.navigation.compose)
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    kapt(libs.room.compiler)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material.icons.extended)
+[plugins]
+# Application plugin
+android.application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+# Library plugin (used for modules that are not the app)
+android = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+# Kotlin Android plugin
+kotlin.android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+# Kotlin Kapt plugin
+kotlin.kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+# Hilt plugin
+hilt = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
-}
+[libraries]
+# Dagger Hilt
+hilt.android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt.compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+
+# Navigation
+navigation.compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+navigation.fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+navigation.ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+
+# Room
+room.runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room.ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room.compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+
+# AndroidX core & lifecycle
+androidx.core.ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidx.lifecycle.runtime.ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+androidx.lifecycle.viewmodel.compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx.activity.compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+
+# Compose BOM (platform)
+androidx.compose.bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+
+# Compose UI libraries (using the BOM version)
+androidx.compose.ui = { module = "androidx.compose.ui:ui", version.ref = "composeBom" }
+androidx.compose.ui.graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "composeBom" }
+androidx.compose.ui.tooling.preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeBom" }
+androidx.compose.material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
+androidx.compose.material.icons.extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "composeIconsExtended" }
+
+# Test libraries
+junit = { module = "junit:junit", version.ref = "junit" }
+androidx.junit = { module = "androidx.test.ext:junit", version.ref = "androidxJUnit" }
+androidx.espresso.core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+androidx.compose.ui.test.junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUiTestJunit" }
+androidx.compose.ui.tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeBom" }
+androidx.compose.ui.test.manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeBom" }
