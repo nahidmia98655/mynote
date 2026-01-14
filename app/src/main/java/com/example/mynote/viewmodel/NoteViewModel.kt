@@ -1,39 +1,41 @@
 package com.example.mynote.viewmodel
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mynote.model.Note
-import com.example.mynote.repository.NoteRepository
+import com.example.mynote.data.Note
+import com.example.mynote.data.NoteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NoteViewModel(private val repository: NoteRepository = NoteRepository()) : ViewModel() {
-    val notes: StateFlow<List<Note>> = repository.getNotes()
-        .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+@HiltViewModel
+class NoteViewModel @Inject constructor(
+    private val repository: NoteRepository
+) : ViewModel() {
 
-    var noteTitle = mutableStateOf("")
-    var noteContent = mutableStateOf("")
+    val notes: StateFlow<List<Note>> = repository.getAllNotes()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    fun addNote() {
-        val title = noteTitle.value.trim()
-        val content = noteContent.value.trim()
-        if (title.isNotEmpty() || content.isNotEmpty()) {
-            val newNote = Note(title = title, content = content)
-            viewModelScope.launch {
-                repository.addNote(newNote)
-            }
-            noteTitle.value = ""
-            noteContent.value = ""
-        }
-    }
-
-    fun deleteNote(noteId: String) {
+    fun addNote(title: String, content: String) {
         viewModelScope.launch {
-            repository.deleteNote(noteId)
+            repository.insert(Note(title = title, content = content))
         }
     }
+
+    fun updateNote(id: Long, title: String, content: String) {
+        viewModelScope.launch {
+            repository.update(Note(id = id, title = title, content = content, timestamp = System.currentTimeMillis()))
+        }
+    }
+
+    fun deleteNote(note: Note) {
+        viewModelScope.launch {
+            repository.delete(note)
+        }
+    }
+
+    suspend fun getNoteById(id: Long): Note? = repository.getNoteById(id)
 }

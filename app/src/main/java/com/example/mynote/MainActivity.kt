@@ -1,21 +1,22 @@
 package com.example.mynote
+import androidx.navigation.compose.*
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import com.example.mynote.ui.theme.AppTheme
-import com.example.mynote.ui.NoteScreen
-import com.example.mynote.viewmodel.NoteViewModel
+import androidx.compose.material3.Surface
+import com.example.mynote.ui.theme.MynoteTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val noteViewModel: NoteViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppTheme {
-                NoteScreen(viewModel = noteViewModel)
+            MynoteTheme {
+                Surface {
+                    AppNavHost()
+                }
             }
         }
     }

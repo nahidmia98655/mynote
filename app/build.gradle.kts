@@ -1,18 +1,17 @@
 plugins {
+    alias(libs.plugins.android)
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
     namespace = "com.example.mynote"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.mynote"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -30,29 +29,44 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
+        freeCompilerArgs += listOf(
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi"
+        )
     }
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
 }
 
 dependencies {
+    implementation(libs.hilt.android)
+kapt(libs.hilt.compiler)
+    implementation(libs.navigation.fragment)
+implementation(libs.navigation.ui)
+implementation(libs.navigation.compose)
+    implementation(libs.room.runtime)
+implementation(libs.room.ktx)
+kapt(libs.room.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    // Added missing icons dependency
-    implementation(libs.androidx.compose.material.iconsExtended)
+    implementation(libs.androidx.compose.material.icons.extended)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
