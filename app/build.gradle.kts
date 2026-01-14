@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinKapt)
-    // Apply Hilt plugin directly to avoid resolution issues with version‑catalog alias
-    id("dagger.hilt.android.plugin") version "2.48"
+    // Apply Hilt plugin using the version‑catalog alias (correct plugin ID)
+    alias(libs.plugins.hilt)
 }
 
 android {
