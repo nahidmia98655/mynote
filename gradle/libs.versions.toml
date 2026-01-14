@@ -29,52 +29,52 @@ espressoCore = "3.5.1"
 composeUiTestJunit4 = "1.5.3"
 
 [plugins]
-# Application plugin
-android.application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+# Application plugin (Android app module)
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 # Library plugin (used for modules that are not the app)
 android = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 # Kotlin Android plugin
-kotlin.android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 # Kotlin Kapt plugin
-kotlin.kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-# Hilt plugin
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+# Dagger Hilt plugin
 hilt = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
 
 [libraries]
 # Dagger Hilt
-hilt.android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hilt.compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 
 # Navigation
-navigation.compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
-navigation.fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
-navigation.ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 
 # Room
-room.runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
-room.ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
-room.compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 # AndroidX core & lifecycle
-androidx.core.ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
-androidx.lifecycle.runtime.ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
-androidx.lifecycle.viewmodel.compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
-androidx.activity.compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 
 # Compose BOM (platform)
-androidx.compose.bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 
 # Compose UI libraries (using the BOM version)
-androidx.compose.ui = { module = "androidx.compose.ui:ui", version.ref = "composeBom" }
-androidx.compose.ui.graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "composeBom" }
-androidx.compose.ui.tooling.preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeBom" }
-androidx.compose.material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
-androidx.compose.material.icons.extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "composeIconsExtended" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeBom" }
+androidx-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "composeBom" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeBom" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "composeIconsExtended" }
 
 # Test libraries
 junit = { module = "junit:junit", version.ref = "junit" }
-androidx.junit = { module = "androidx.test.ext:junit", version.ref = "androidxJUnit" }
-androidx.espresso.core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
-androidx.compose.ui.test.junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUiTestJunit" }
-androidx.compose.ui.tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeBom" }
-androidx.compose.ui.test.manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeBom" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidxJUnit" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeUiTestJunit" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeBom" }
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeBom" }
