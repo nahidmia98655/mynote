@@ -30,13 +30,13 @@ composeUiTestJunit4 = "1.5.3"
 
 [plugins]
 # Application plugin (Android app module)
-android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 # Library plugin (used for modules that are not the app)
-android = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 # Kotlin Android plugin
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 # Kotlin Kapt plugin
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 # Dagger Hilt plugin
 hilt = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
 
