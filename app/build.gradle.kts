@@ -1,8 +1,10 @@
+// app/build.gradle.kts
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.hilt) // <-- added Hilt Gradle plugin
+    // Apply Hilt plugin directly to avoid resolution issues with version‑catalog alias
+    id("dagger.hilt.android.plugin") version "2.48"
 }
 
 android {
