@@ -9,15 +9,4 @@ plugins {
     // (no need to apply it here, but we need its classpath for resolution)
 }
 
-// Explicitly add the Hilt Gradle plugin classpath so that the plugin can be resolved
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.48")
-    }
-}
-
 // No additional configuration needed at the top level for this simple project.
